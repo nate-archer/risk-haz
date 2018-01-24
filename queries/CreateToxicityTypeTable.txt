@@ -1,0 +1,6 @@
+CREATE TABLE toxicity_type (
+   Toxid int not null auto_increment primary key,
+   ShortName varchar(8) not null unique,
+   LongName varchar(255) not null unique,
+   Unit varchar(32)
+) ENGINE=InnoDB;

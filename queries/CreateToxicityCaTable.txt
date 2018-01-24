@@ -1,0 +1,15 @@
+CREATE TABLE toxicity_ca(
+   Tcid int not null auto_increment primary key,
+   Aid_fk int not null,
+   Toxid_fk int not null,
+   ToxVal float,
+   LastUpdated timestamp DEFAULT current_timestamp ON UPDATE current_timestamp,
+   FOREIGN KEY fk_aid2(Aid_fk)
+      REFERENCES analyte(Aid)
+      ON UPDATE RESTRICT
+      ON DELETE RESTRICT,
+   FOREIGN KEY fk_toxid2(Toxid_fk)
+      REFERENCES toxicity_type(Toxid)
+      ON UPDATE RESTRICT
+      ON DELETE RESTRICT
+)ENGINE=InnoDB;

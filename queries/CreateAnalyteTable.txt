@@ -1,0 +1,11 @@
+CREATE TABLE analyte(
+   Aid int not null auto_increment primary key,
+   AnalyteName varchar(255) not null unique,
+   CasNo varchar(32) not null unique,
+   Volatility varchar(2) not null,
+   Absid_fk int not null,
+   FOREIGN KEY fk_abs(Absid_fk)
+      REFERENCES abs_ca(Absid)
+      ON UPDATE RESTRICT
+      ON DELETE RESTRICT
+)ENGINE=InnoDB;

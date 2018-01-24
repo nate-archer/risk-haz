@@ -1,0 +1,5 @@
+LOAD DATA INFILE '/home/bitnami/csv_tables/ABS_CA.csv' INTO TABLE ABS_CA
+FIELDS TERMINATED BY ',' 
+LINES TERMINATED BY '\r\n'
+IGNORE 1 LINES
+(@col1,@col2) set AbsCat=@col1,AbsVal=@col2 ;

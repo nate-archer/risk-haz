@@ -1,0 +1,6 @@
+CREATE TABLE abs_ca(
+   Absid int not null auto_increment primary key,
+   AbsCat varchar(255) not null unique,
+   AbsVal float,
+   LastUpdated timestamp DEFAULT current_timestamp ON UPDATE current_timestamp
+) ENGINE=InnoDB;

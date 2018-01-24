@@ -1,0 +1,9 @@
+CREATE TABLE constant (
+   Conid int not null auto_increment primary key,
+   ShortName varchar(8) not null,
+   LongName varchar(255) not null,
+   Value float not null,
+   Unit varchar(32) not null,
+   Receptor varchar(32),
+   LastUpdated timestamp DEFAULT current_timestamp ON UPDATE current_timestamp
+) ENGINE=InnoDB;

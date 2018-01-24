@@ -1,0 +1,62 @@
+DROP TABLE IF EXISTS tox_ca_temp;
+
+
+CREATE TABLE IF NOT EXISTS tox_ca_temp(
+   Tempid int not null auto_increment primary key,
+   Sfo float,
+   Iur float,
+   Rfdo float,
+   Rfci float,
+   AnalyteName varchar(255),
+   CasNo varchar(32),
+   Aid int
+)ENGINE=InnoDB;
+
+
+//convert Rfci into mg by dividing by 1000
+LOAD DATA INFILE '/home/bitnami/csv_tables/TOXICITY_CA.txt' INTO TABLE tox_ca_temp 
+FIELDS TERMINATED BY '\t' ENCLOSED BY '"' 
+LINES TERMINATED BY '\r\n' 
+IGNORE 1 LINES 
+(@col1,@col2,@col3,@col4,@col5,@col6) set Sfo=@col3,Iur=@col4,Rfdo=@col5,Rfci=@col6/1000,AnalyteName=@col1,CasNo=@col2 ;
+
+
+UPDATE tox_ca_temp SET AnalyteName = REPLACE(AnalyteName,'~','');
+
+
+DELETE FROM tox_ca_temp
+WHERE Sfo=0 AND Iur=0 AND Rfdo=0 AND Rfci=0;
+
+
+UPDATE tox_ca_temp SET Aid = (SELECT Aid FROM analyte WHERE analyte.CasNo = tox_ca_temp.CasNo);
+
+SELECT AnalyteName, CasNo from tox_ca_temp WHERE AID IS NULL;
+
+UPDATE tox_ca_temp SET Aid = (SELECT Aid FROM analyte WHERE analyte.AnalyteName = tox_ca_temp.AnalyteName) WHERE AID IS NULL;
+
+
+INSERT INTO toxicity_ca (Aid_fk, Toxid_fk, ToxVal)
+SELECT Aid, 1, Sfo
+FROM tox_ca_temp
+WHERE Sfo != 0;
+
+
+INSERT INTO toxicity_ca (Aid_fk, Toxid_fk, ToxVal)
+SELECT Aid, 2, Iur
+FROM tox_ca_temp
+WHERE Iur != 0;
+
+
+INSERT INTO toxicity_ca (Aid_fk, Toxid_fk, ToxVal)
+SELECT Aid, 3, Rfdo
+FROM tox_ca_temp
+WHERE Rfdo != 0;
+
+
+INSERT INTO toxicity_ca (Aid_fk, Toxid_fk, ToxVal)
+SELECT Aid, 4, Rfci
+FROM tox_ca_temp
+WHERE Rfci != 0;
+
+
+DROP TABLE IF EXISTS tox_ca_temp;
