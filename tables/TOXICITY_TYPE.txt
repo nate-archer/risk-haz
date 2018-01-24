@@ -1,0 +1,6 @@
+Short Name	Long Name	Unit
+SFO	Slope Factor Oral	(mg/kg-day) EXP-1
+IUR	Inhalation Unit Risk	(ug/m EXP3) EXP-1
+RfDo	Reference Dose Oral	(mg/kg-day)
+RfCi	Reference Concentration	(mg/m EXP3)
+ABS	Absorption Fraction	percentage

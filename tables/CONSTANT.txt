@@ -1,0 +1,21 @@
+ShortName	LongName	Value	Unit	Receptor
+AF	Soil to Skin Adherence Factor	0.07	mg/cm EXP2	Adult
+AF	Soil to Skin Adherence Factor	0.2	mg/cm EXP2	Child
+AT	Averaging Time	"25,550"	days	All (Risk)
+AT	Averaging Time	"7,300"	days	Adult (Haz)
+AT	Averaging Time	"2,190"	days	Child (Haz)
+AT	Averaging Time	"9,125"	days	Worker (Haz)
+BW	Body Weight	80	kg	Adult
+BW	Body Weight	15	kg	Child
+ED	Exposure Duration	20	years	Adult
+ED	Exposure Duration	6	years	Child
+ED	Exposure Duration	25	years	Worker
+EF	Exposure Frequency	350	days/year	Resident
+EF	Exposure Frequency	250	days/year	Worker
+ET	Exposure Time	24	hours/day	Resident
+ET	Exposure Time	8	hours/day	Worker
+IRs	Incidental Soil Ingestion	100	mg/day	Adult
+IRs	Incidental Soil Ingestion	200	mg/day	Child
+PEF	Particulate Emission Factor	"1,360,000,000"	(m EXP3)/kg	
+SA	Exposed Skin Surface Area	6032	cm EXP2	Adult
+SA	Exposed Skin Surface Area	2900	cm EXP2	Child
